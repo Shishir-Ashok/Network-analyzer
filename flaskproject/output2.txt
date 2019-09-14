@@ -1,0 +1,4 @@
+192.168.43.1	00:ec:0a:92:12:e3	Xiaomi Communications Co Ltd
+192.168.43.199	80:58:f8:68:bd:5f	Motorola Mobility LLC, a Lenovo Company
+192.168.43.199	80:58:f8:68:bd:5f	Motorola Mobility LLC, a Lenovo Company (DUP: 2)
+

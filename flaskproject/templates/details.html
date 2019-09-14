@@ -1,0 +1,12 @@
+<table border = 10>
+	<tr>
+		<td> First Name </td>
+		<td> Last Name </td>
+	</tr>
+	{% for item in userDetails %}
+	<tr>
+		<td> {{item[0]}} </td>
+		<td> {{item[1]}} </td>
+	</tr>
+	{% endfor %}
+</table>
