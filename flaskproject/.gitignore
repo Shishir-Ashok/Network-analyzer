@@ -1,3 +1,4 @@
 Script/
 *.yaml
 *.txt
+.DS_Store
