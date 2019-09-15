@@ -1,4 +1,0 @@
-? (192.168.0.1) at 70:5a:9e:65:72:e9 on en0 ifscope [ethernet]
-? (192.168.0.10) at 0:ec:a:92:12:e3 on en0 ifscope [ethernet]
-? (192.168.0.11) at 80:58:f8:68:bd:5f on en0 ifscope [ethernet]
-? (224.0.0.251) at 1:0:5e:0:0:fb on en0 ifscope permanent [ethernet]
