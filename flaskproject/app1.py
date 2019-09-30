@@ -9,6 +9,7 @@ mysql = MySQL(app)
 
 
 db = yaml.load(open('db.yaml'))
+print(db)
 app.config['MYSQL_HOST'] = db['mysql_host']
 app.config['MYSQL_USER'] = db['mysql_user']
 app.config['MYSQL_PASSWORD'] = db['mysql_password']
@@ -26,7 +27,7 @@ def index():
 		cur.execute("INSERT INTO USER(FNAME,LNAME) VALUES(%s,%s)",(fname,lname))
 		mysql.connection.commit()
 		cur.close()
-		return redirect('/users')
+		# return redirect('/users')
 	return render_template('index.html')
 
 @app.route('/users')

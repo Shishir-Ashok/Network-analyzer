@@ -1,12 +1,40 @@
-<HTML>
-<BODY bgcolor="cyan">
-<form method="POST" action="">
-    <center>
-    <H1>Enter your details </H1> <br>
-    Fname <input type = "text" name= "fname" /> <br>
-    Lname <input type = "text" name = "lname" /> <br>
-    <input type = "submit">
-    </center>
-</form>
-</BODY>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Network Analyzer</title>
+    <meta charset="UTF-8">
+    <!-- <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet" type="text/css"> -->
+    <link href="../static/styles/style.css" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <body>
+    <br>
+  <div class="bg">
+    <div class="topnav">
+        <ul>
+          <li><a class="Networkanalyzer" href="#">NETWORK ANALYZER</a></li>
+        <li><a class="How to use" href="#">HOW TO USE</a></li>
+        <li><a class="About" href="#">ABOUT</a></li>
+        <li><a class="SignIn" href="#">SIGN IN/SIGN UP</a></li>
+      </ul>
+    </div>
+
+    <form method="POST" action="">
+        <div class="login-box">
+          <h1>Login</h1> 
+          <div class="textbox">
+            <i class="userimg"></i>
+            <input type = "text" name= "fname" placeholder="Username"> 
+
+          </div>
+          <div class="textbox">
+            <i class="passwordimg"></i>
+            <input type = "text" name = "lname" placeholder="Enter Password">
+          </div>
+          <input class="submitButton" type = "submit" value="Submit">
+        </div>
+      </form>
+  </div>
+  </body>
 </HTML>
