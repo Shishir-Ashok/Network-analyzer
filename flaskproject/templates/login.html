@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block loginform %}   
+  <form method="POST" action="">
+    {{ form.csrf_token }}
+
+    <div class="login-box">
+      <h1>Login</h1> 
+      <div class="textbox">
+        <i class="userimg"></i>
+        {% if form.email.errors %}
+          {{ form.email(placeholder="Enter Email ID") }}
+          <div class="invalid-feedback">
+              {% for error in form.email.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(placeholder="Enter Email ID") }}
+        {% endif %}
+
+      </div>
+      <div class="textbox">
+        <i class="passwordimg"></i>
+        {% if form.password.errors %}
+          {{ form.password(placeholder="Enter Password") }}
+          <div class="invalid-feedback">
+              {% for error in form.password.errors %}
+                  <span>{{ error }}</span>
+              {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(placeholder="Enter Password") }}
+        {% endif %}
+      </div>
+      <input class="submitButton" type = "submit" value="Submit">
+      <h6>Don't have an account?</h6> 
+       <a href="/sign-up" class="signupButton">SIGN UP</a>
+    </div>
+  </form>
+{% endblock loginform %}
+        
+
+

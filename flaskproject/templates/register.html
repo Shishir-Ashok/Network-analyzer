@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block registration %}
+    <div class="login-box">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="fieldset">
+                <h1>Sign Up</h1>
+                <div class="textbox">
+                    <!-- {{ form.username.label(placeholder="Enter Username") }} -->
+
+                    {% if form.username.errors %}
+                        {{ form.username(placeholder="Enter Username") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.username.errors %}
+
+                                <span><br>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.username(placeholder="Enter Username") }}
+                    {% endif %}
+                </div>
+                <div class="textbox">
+                    <!-- {{ form.email.label(class="form-control-label") }} -->
+                    {% if form.email.errors %}
+                        {{ form.email(placeholder="Enter Email ID") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                
+                                <span><br>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(placeholder="Enter Email ID") }}
+                    {% endif %}
+                </div>
+                <div class="textbox">
+                    <!-- {{ form.password.label(class="form-control-label") }} -->
+                    {% if form.password.errors %}
+                        {{ form.password(placeholder="Enter Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                
+                                <span><br>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(placeholder="Enter Password") }}
+                    {% endif %}
+                </div>
+                <div class="textbox">
+                    <!-- {{ form.confirm_password.label(class="form-control-label") }} -->
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(placeholder="Confirm Password") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                            <br>
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(placeholder="Confirm Password") }}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{ form.submit(class="signupForm") }}
+            </div>
+        </form>
+    </div>
+{% endblock registration %}
