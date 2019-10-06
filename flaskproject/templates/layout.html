@@ -14,15 +14,26 @@
     <div class="topnav">
         <ul>
           <li><a class="Networkanalyzer" href="#">NETWORK ANALYZER</a></li>
-        <li><a class="How to use" href="#">HOW TO USE</a></li>
+        <li><a class="Howtouse" href="#">HOW TO USE</a></li>
         <li><a class="About" href="#">ABOUT</a></li>
         <li><a class="Login" href="/login">LOGIN</a></li>
       </ul>
     </div>
     </div>
-
-    {% block loginform %} {% endblock %}
-    {% block registration %} {% endblock %}
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+      {% block loginform %} {% endblock %}
+      {% block registration %} {% endblock %}
+    
 
   </body>
 </html>

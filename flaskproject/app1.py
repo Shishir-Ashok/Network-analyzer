@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 import yaml
 from forms import LoginForm,RegistrationForm
@@ -25,8 +25,17 @@ def register():
 	form = RegistrationForm()
 
 	if form.validate_on_submit():
+		userDetails = request.form
+		username = userDetails['username']
+		email = userDetails['email']
+		password = userDetails['password']
+		cur = mysql.connection.cursor()
+		test = cur.execute("INSERT INTO USER_DETAILS(USERNAME,EMAIL,PASSWORD) VALUES(%s,%s,%s)",(username,email,password))
+		mysql.connection.commit()
+		cur.close()
+		flash(f'Account created for {form.username.data}!', 'success')
 		return render_template('layout.html')
-	return render_template('register.html',form=form)
+	return render_template('register.html',title='Register',form=form)
 # @app.route('/', methods=['GET','POST'])
 # def index():
 # 	if request.method == 'POST':
@@ -46,6 +55,8 @@ def register():
 # 		#return redirect('/users')
 # 	return render_template('tindex.html')
 @app.route('/')
+def home():
+	return render_template('layout.html')
 @app.route('/login', methods=['GET','POST'])
 def login():
 	# if request.method == 'POST':
@@ -55,9 +66,19 @@ def login():
 		userDetails = request.form
 		email = userDetails['email']
 		password = userDetails['password']
-		print(email)
-		return render_template('layout.html')
-	return render_template('login.html',form=form)
+		email = userDetails['email']
+		password = userDetails['password']
+		cur = mysql.connection.cursor()
+		test = cur.execute("SELECT EMAIL,PASSWORD FROM USER_DETAILS WHERE EMAIL=%s AND PASSWORD=%s",(email,password))
+		mysql.connection.commit()
+		cur.close()
+		if (test == 1):
+			flash('You have been logged in!', 'success')
+			return redirect(url_for('home'))
+		else:
+			flash('Login Unsuccessful! Email ID or Password or both is incorrect.', 'danger')
+		return redirect('/login')
+	return render_template('login.html',title='Login',form=form)
 
 @app.route('/users')
 def users():
