@@ -8,8 +8,7 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 
-engine = create_engine("mysql+pymysql://root:MySQL@123a@localhost/test1?host=localhost?port=3306")
-conn = engine.connect()
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:MySQL@123a@localhost/flask'
 app.config['SECRET_KEY'] = 'a598a7af31fd2b71f6b60c8e102bf467'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

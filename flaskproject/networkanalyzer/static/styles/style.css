@@ -287,4 +287,14 @@ body, html {
 	left: 50%;
 	transform: translate(-50%,-50%);
 	background-color: black;
+	margin: 20px 0px;
+	border: 2px solid black;
+	text-decoration: none;
+	text-align: center;
+	font-family: Calibri;
+	color: black;
+	font-size: 14px;
+	background: none;
+	display: block;	
+	cursor: pointer;
 }
