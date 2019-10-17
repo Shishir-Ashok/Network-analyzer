@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block account %} 
+
+	<div class='account-box'>
+		<img class="account-img rounded-circle " src="{{ image_file }}">
+        <h2>{{ current_user.USERNAME }}</h2>
+        <p>{{ current_user.EMAIL }}</p>
+    </div>
+
+{% endblock account %}

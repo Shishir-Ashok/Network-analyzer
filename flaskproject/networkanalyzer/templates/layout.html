@@ -9,17 +9,18 @@
   </head>
 
   <body>
-    <br>
   <div class="bg">
     <div class="topnav">
         <ul>
-          <li><a class="Networkanalyzer" href="#">NETWORK ANALYZER</a></li>
+          <li><a class="Networkanalyzer" href="{{url_for('home')}}">NETWORK ANALYZER</a></li>
         <li><a class="Howtouse" href="#">HOW TO USE</a></li>
         <li><a class="About" href="#">ABOUT</a></li>
         {% if current_user.is_anonymous %}
-          <li><a class="Login" href="/login">LOGIN</a></li>
+          <li><a class="Login" href="{{url_for('login')}}">LOGIN</a></li>
+          <!-- <li><a class="Register" href="{{url_for('register')}}">REGISTER</a></li> -->
         {% else %}
-          <li><a class="Logout" href="/logout">LOGOUT</a></li>
+          <li><a class="Logout" href="{{url_for('logout')}}">LOGOUT</a></li>
+          <li><a class="account" href="{{url_for('account')}}">ACCOUNT</a></li>
         {% endif %}
       </ul>
     </div>
@@ -35,9 +36,8 @@
         {% endif %}
       {% endwith %}
     </div>
-    <div>
-      <a class="scanButton" href="/sacn">Scan Now</a>
-    </div>
+      {% block account %} {% endblock %}
+      {% block home %} {% endblock %}
       {% block loginform %} {% endblock %}
       {% block registration %} {% endblock %}
     
