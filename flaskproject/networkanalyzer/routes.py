@@ -4,8 +4,8 @@ from networkanalyzer import db,app,bcrypt
 from networkanalyzer.model import USER_DETAILS, CIDR_, DEVICE_ADDRESS
 from flask_login import login_user, LoginManager, logout_user, current_user, login_required
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-from networkanalyzer.getIPinfo import IP_Address, subnetMask
-from networkanalyzer.parse import IPaddress, macSplit
+from networkanalyzer.getIPinfo import getIP
+from networkanalyzer.parse import macIP
 # import networkanalyzer.getIPinfo
 import os
 
@@ -44,6 +44,7 @@ def login():
 	if current_user.is_authenticated:
 		return redirect(url_for('home'))
 	form = LoginForm()
+	print("Login form = ", form)
 	if form.validate_on_submit():
 		user = USER_DETAILS.query.filter_by(EMAIL=form.email.data).first()
 		if user and bcrypt.check_password_hash(user.PASSWORD, form.password.data):
@@ -69,11 +70,22 @@ def account():
 def scan():
 	os.system('cd networkanalyzer/;sh script.sh')
 	i=1;
-	info = DEVICE_ADDRESS(IP=IPaddress, MAC=macSplit, VID=i)
-	db.session.add(info)
+	IP, MAC = macIP(fileName="networkanalyzer/output.txt",getip_filename="networkanalyzer/IPinfo.txt")
+	# info = DEVICE_ADDRESS(IP=mac_IP.IPaddress.data, MAC=macIP.macSplit.data, VID=i)
+	# db.session.add(info)
+	# db.session.commit()
+	# mask = CIDR_.query.filter_by(HEX=get_IP.subnetMask.data).first()
+	x = len(IP)
+	for i in range (x):
+		print("MAC : ",MAC[i],"IP : ", IP[i])
+		info = DEVICE_ADDRESS(IP=IP[i], MAC=MAC[i], VID=i+1)
+		db.session.add(info)
 	db.session.commit()
-	mask = CIDR_.query.filter_by(HEX=subnetMask).first()
-	return redirect(url_for('home'))
+	# for i in mac_IP:
+	# 	a =1
+	# 	print(i[a])
+	# print(mask)
+	return render_template('table.html', title='Scan Result',IP=IP,MAC=MAC,x=x)
 
 
 @app.route('/logout')

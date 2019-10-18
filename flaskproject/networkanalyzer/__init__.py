@@ -21,3 +21,4 @@ login_manager.login_message_category = 'info'
 
 
 from networkanalyzer import routes
+from networkanalyzer import parse
