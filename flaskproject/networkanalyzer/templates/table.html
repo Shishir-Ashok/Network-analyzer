@@ -1,24 +1,32 @@
 {% extends "layout.html" %}
 {% block table %} 
 
-	<table class="login-box, content-table">
-		<thead>
-		    <tr>
-		      <th>Number</th>
-		      <th>IP Address</th>
-		      <th>MAC Address</th>
-		      <th>Device Name</th>
-		    </tr>
-	  	</thead>
-	  
-	  	{% for i in range (x) %}
-	  	<tbody>
-		    <tr>
-		      <td>{{ i+1 }}</td>
-		      <td>{{ IP[i] }}</td>
-		      <td>{{ MAC[i] }}</td>
-		      <td>{{ i }}</td>
-		    </tr>
-		</tbody>
-		{% endfor %}
+	<div>
+		<table class="login-box, content-table" style="height: 60px; overflow: auto;">
+			<thead>
+			    <tr>
+			      <th>Index</th>
+			      <th>IP Address</th>
+			      <th>MAC Address</th>
+			      <th>Device Name</th>
+			    </tr>
+		  	</thead>		  
+		  	{% for i in range (x) %}
+		  	<tbody>
+			    <tr>
+			      <td>{{ i+1 }}</td>
+			      <td>{{ IP[i] }}</td>
+			      <td>{{ MAC[i] }}</td>
+			      <td>{{ i }}</td>
+			    </tr>
+			</tbody>
+			{% endfor %}
+		</div>
+		</table>
+	<div>
+      <a class="scanlaterButton" href="{{url_for('scan')}}">Scan Now</a>
+    </div>
+	<div>
+      <a class="saveButton" href="{{url_for('save')}}">Save Data</a>
+    </div>
 {% endblock table %}

@@ -276,6 +276,7 @@ body, html {
 	position: absolute;
 	width: 125px;
 	height: 30px;
+	margin-top: 50px;
 	top: 60%;
 	left: 50%;
 	transform: translate(-60%,300%);
@@ -291,7 +292,7 @@ body, html {
 	cursor: pointer;
 }
 
-.scanButton:hover {
+.scanButton:hover, .saveButton:hover, .scanlaterButton:hover {
 	background: white;
 	color: black;
 }
@@ -349,30 +350,30 @@ textarea:focus, input:focus, select {
 }
 
 .content-table {
-  border-collapse: collapse;
-  margin: 25px 0;
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-60%,-40%);
-  font-family: "Muli"
-  font-size: 0.9em;
-  min-width: 400px;
-  border-radius: 5px 5px 0 0;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+	border-collapse: collapse;
+	margin: 25px 0;
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-60%,-40%);
+	font-size: 0.9em;
+	min-width: 400px;
+	border-radius: 5px 5px 0 0;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .content-table thead tr {
   background-color: #fff;
   color: #000;
-  text-align: left;
-  font-weight: bold;
+  font-weight: lighter;
 }
 
 .content-table th,
 .content-table td {
   padding: 12px 15px;
+  text-align: left;
+  font-family: "Noto Sans"
+
 }
 
 .content-table tbody tr {
@@ -386,4 +387,30 @@ textarea:focus, input:focus, select {
 
 .content-table tbody tr:last-of-type {
   border-bottom: 2px solid #009879;
+}
+
+.saveButton, .scanlaterButton {
+	margin-top: 50px;
+	position: absolute;
+	width: 125px;
+	height: 30px;
+	top: 60%;
+	transform: translate(-60%,300%);
+	background-color: white;
+	border: 1.4px solid white;
+	text-decoration: none;
+	text-align: center;
+	font-family: "Muli";
+	font-weight: lighter;
+	color: white;
+	font-size: 20px;
+	background: black;
+	cursor: pointer;
+}
+
+.saveButton {
+	left: 40%;
+}
+.scanlaterButton {
+	left: 55%;
 }

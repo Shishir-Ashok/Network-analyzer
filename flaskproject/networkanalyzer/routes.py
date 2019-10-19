@@ -71,21 +71,24 @@ def scan():
 	os.system('cd networkanalyzer/;sh script.sh')
 	i=1;
 	IP, MAC = macIP(fileName="networkanalyzer/output.txt",getip_filename="networkanalyzer/IPinfo.txt")
-	# info = DEVICE_ADDRESS(IP=mac_IP.IPaddress.data, MAC=macIP.macSplit.data, VID=i)
-	# db.session.add(info)
-	# db.session.commit()
-	# mask = CIDR_.query.filter_by(HEX=get_IP.subnetMask.data).first()
+	x = len(IP)
+	return render_template('table.html', title='Scan Result',IP=IP,MAC=MAC,x=x)
+
+
+@app.route('/save')
+@login_required
+def save():
+	os.system('cd networkanalyzer/;sh script.sh')
+	i=1;
+	IP, MAC = macIP(fileName="networkanalyzer/output.txt",getip_filename="networkanalyzer/IPinfo.txt")
 	x = len(IP)
 	for i in range (x):
 		print("MAC : ",MAC[i],"IP : ", IP[i])
 		info = DEVICE_ADDRESS(IP=IP[i], MAC=MAC[i], VID=i+1)
 		db.session.add(info)
 	db.session.commit()
-	# for i in mac_IP:
-	# 	a =1
-	# 	print(i[a])
-	# print(mask)
-	return render_template('table.html', title='Scan Result',IP=IP,MAC=MAC,x=x)
+	flash('Saved to database successfully','success')
+	return redirect(url_for('home'))
 
 
 @app.route('/logout')
