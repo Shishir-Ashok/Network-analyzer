@@ -309,7 +309,7 @@ body, html {
 	padding: 0;
 	position: absolute;
 	top: 55%;
-	left: 50%;
+	left: 48%;
 	transform: translate(-50%,-0%);
 	color: white;
 }
@@ -352,6 +352,7 @@ textarea:focus, input:focus, select {
 .content-table {
 	border-collapse: collapse;
 	margin: 25px 0;
+	background-color: rgba(000, 000, 000, 0.4);
 	position: absolute;
 	top: 55%;
 	left: 50%;
@@ -376,6 +377,17 @@ textarea:focus, input:focus, select {
 
 }
 
+.table-box {
+	width: 480px;
+	margin: 0;
+	padding: 0;
+	/*position-top: 200px;*/
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-60%,-40%);
+	color: white;
+}
 .content-table tbody tr {
   color: #fff;
   border-bottom: 1px solid #dddddd;
@@ -395,7 +407,7 @@ textarea:focus, input:focus, select {
 	width: 125px;
 	height: 30px;
 	top: 60%;
-	transform: translate(-60%,300%);
+	transform: translate(-80%,-850%);
 	background-color: white;
 	border: 1.4px solid white;
 	text-decoration: none;

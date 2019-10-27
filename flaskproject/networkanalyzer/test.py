@@ -20,7 +20,8 @@ class USER_DETAILS(db.Model):
 
 class VENDORS(db.Model):
 	VID = db.Column(db.Integer, primary_key=True)
-	NAME = db.Column(db.String(60), nullable=False)
+	MACSEARCH = db.Column(db.String(20), nullable=False)
+	NAME = db.Column(db.String(100), nullable=False)
 
 	def __repr__(self):
 		return f"Vendor('{self.NAME}')"
@@ -34,7 +35,7 @@ class DEVICE_ADDRESS(db.Model):
 
 class RECORDS(db.Model):
 	RID = db.Column(db.Integer, primary_key=True)
-	TIMESTAMP = db.Column(db.String(30), nullable=False)
+	TIMESTAMP = db.Column(db.String(60), nullable=False)
 	UID = db.Column(db.Integer, db.ForeignKey(USER_DETAILS.UID, ondelete="CASCADE", onupdate="CASCADE"))
 
 class U_D(db.Model):

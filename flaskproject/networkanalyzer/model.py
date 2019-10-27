@@ -25,6 +25,7 @@ class USER_DETAILS(db.Model, UserMixin):
 
 class VENDORS(db.Model, UserMixin):
 	VID = db.Column(db.Integer, primary_key=True)
+	MACSEARCH = db.Column(db.String(20), nullable=False)
 	NAME = db.Column(db.String(60), nullable=False)
 
 	def __repr__(self):
