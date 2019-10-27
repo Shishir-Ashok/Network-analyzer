@@ -2,6 +2,7 @@
 Script/
 *.yaml
 *.txt
-.DS_Store
+*.DS_Store
 .lib
 Report/
+*.pyc
