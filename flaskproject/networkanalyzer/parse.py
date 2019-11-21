@@ -1,3 +1,6 @@
+import os
+import getmac
+
 def macIP(fileName,getip_filename):
 	MACaddressforSearch = []
 	MACaddressforSearch[:] = []
@@ -41,5 +44,17 @@ def macIP(fileName,getip_filename):
 			# print("IP : %s \tMAC : %s"%(IPaddress,macSplit))	
 			i=i+1
 	# print("MACaddressforSearch : ",MACaddressforSearch)
-	# print(IP, ' ', MAC)
+	
+	IP.append(IP_Address)
+	IP.sort()
+	index = IP.index(IP_Address)
+	system_Mac = getmac.get_mac_address()
+	system_Mac = system_Mac.upper()
+	print("SYSTEM MAC ",system_Mac)
+	MAC.insert(index,system_Mac)
+	system_Mac = system_Mac.replace(':','')
+	system_Mac = system_Mac[:6]
+	MACaddressforSearch.insert(index,system_Mac)
+	
+	print(IP, ' ', MAC, ' ', MACaddressforSearch)
 	return IP, MAC, MACaddressforSearch

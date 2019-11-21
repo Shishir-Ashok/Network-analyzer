@@ -29,7 +29,10 @@ class VENDORS(db.Model, UserMixin):
 	NAME = db.Column(db.String(60), nullable=False)
 
 	def __repr__(self):
-		return f"Vendor('{self.NAME}')"
+		return f"Vendor('{self.NAME}','{self.VID}')"
+
+	def get_id(self):
+		return (self.VID)
 
 class DEVICE_ADDRESS(db.Model, UserMixin):
 	DID = db.Column(db.Integer, primary_key=True)
@@ -54,12 +57,6 @@ class U_D(db.Model, UserMixin):
 	UID = db.Column(db.Integer, db.ForeignKey(USER_DETAILS.UID, ondelete="CASCADE", onupdate="CASCADE"))
 	DID = db.Column(db.Integer, db.ForeignKey(DEVICE_ADDRESS.DID, ondelete="CASCADE", onupdate="CASCADE"))
 
-
-
-class R_V(db.Model, UserMixin):
-	ID = db.Column(db.Integer, primary_key=True)
-	RID = db.Column(db.Integer, db.ForeignKey(RECORDS.RID, ondelete="CASCADE", onupdate="CASCADE"))
-	VID = db.Column(db.Integer, db.ForeignKey(VENDORS.VID, ondelete="CASCADE", onupdate="CASCADE"))
 
 class CIDR_(db.Model, UserMixin):
 	ID = db.Column(db.Integer, primary_key=True)

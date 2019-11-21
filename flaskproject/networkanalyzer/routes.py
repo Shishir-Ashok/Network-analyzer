@@ -8,7 +8,7 @@ from networkanalyzer.getIPinfo import getIP
 from networkanalyzer.parse import macIP
 # import networkanalyzer.getIPinfo
 import os
-
+import getmac
 
 
 @app.route('/sign-up', methods=['GET','POST'])
@@ -86,8 +86,11 @@ def save():
 	IP, MAC, search_MAC = macIP(fileName="networkanalyzer/output.txt",getip_filename="networkanalyzer/IPinfo.txt")
 	x = len(IP)
 	for i in range (x):
-		print("MAC : ",MAC[i],"IP : ", IP[i])
-		info = DEVICE_ADDRESS(IP=IP[i], MAC=MAC[i], VID=VENDORS(MACSEARCH=MAC[i]))
+		print("MAC : ",MAC[i],"IP : ", IP[i],"MAC Search : ",search_MAC[i])
+		id = VENDORS.query.filter_by(MACSEARCH=search_MAC[i]).first()
+
+		print("ID : ",id.VID)
+		info = DEVICE_ADDRESS(IP=IP[i], MAC=MAC[i], VID=id.VID)
 		db.session.add(info)
 	db.session.commit()
 	flash('Saved to database successfully','success')
