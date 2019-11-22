@@ -1,14 +1,16 @@
-from flask import render_template, request, redirect, url_for, flash, request
-from networkanalyzer.forms import LoginForm,RegistrationForm
-from networkanalyzer import db,app,bcrypt
-from networkanalyzer.model import USER_DETAILS, CIDR_, DEVICE_ADDRESS, VENDORS
 from flask_login import login_user, LoginManager, logout_user, current_user, login_required
+from networkanalyzer.model import USER_DETAILS, CIDR_, DEVICE_ADDRESS, VENDORS, RECORDS
+from flask import render_template, request, redirect, url_for, flash, request
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+from networkanalyzer.forms import LoginForm,RegistrationForm
 from networkanalyzer.getIPinfo import getIP
+from networkanalyzer import db,app,bcrypt
 from networkanalyzer.parse import macIP
-# import networkanalyzer.getIPinfo
-import os
+from datetime import datetime
 import getmac
+import time
+import os
+
 
 
 @app.route('/sign-up', methods=['GET','POST'])
@@ -47,6 +49,12 @@ def login():
 			login_user(user, remember=form.remember.data)
 			flash('You have been logged in!', 'success')
 			next_page = request.args.get('next')
+			now = datetime.now()
+			now.strftime("%d/%m/%Y %H:%M:%S")
+			message = 'LOGGED IN'
+			info = RECORDS(TIMESTAMP=now, INFO=message, UID=current_user.UID)
+			db.session.add(info)
+			db.session.commit()
 			return redirect(next_page) if next_page else redirect(url_for('home'))
 		else:
 			flash('Login Unsuccessful! Email ID and / or Password is incorrect.', 'danger')
@@ -71,9 +79,9 @@ def scan():
 	for i in search_MAC:
 		z = ''
 		name = VENDORS.query.filter_by(MACSEARCH=i).first()
-		z = str(name)
-		z = z[8:-2]
-		print("Z :",z)
+		z = str(name.NAME)
+		print("Userdetails ",current_user.UID)
+		print("Z Before :",z)
 		name_MAC.append(z)
 	# print("name_MAC : ", name_MAC)
 	return render_template('table.html', title='Scan Result',IP=IP,MAC=MAC,name_MAC=name_MAC, x=x)
@@ -93,11 +101,23 @@ def save():
 		info = DEVICE_ADDRESS(IP=IP[i], MAC=MAC[i], VID=id.VID)
 		db.session.add(info)
 	db.session.commit()
+	now = datetime.now()
+	now.strftime("%d/%m/%Y %H:%M:%S")
+	message = 'SAVED SCAN REPORT'
+	info = RECORDS(TIMESTAMP=now, INFO=message, UID=current_user.UID)
+	db.session.add(info)
+	db.session.commit()
 	flash('Saved to database successfully','success')
 	return redirect(url_for('home'))
 
 
 @app.route('/logout')
 def logout():
+	now = datetime.now()
+	now.strftime("%d/%m/%Y %H:%M:%S")
+	message = 'LOGGED OUT'
+	info = RECORDS(TIMESTAMP=now, INFO=message, UID=current_user.UID)
+	db.session.add(info)
+	db.session.commit()
 	logout_user()
 	return redirect(url_for('home'))

@@ -47,6 +47,7 @@ class DEVICE_ADDRESS(db.Model, UserMixin):
 class RECORDS(db.Model, UserMixin):
 	RID = db.Column(db.Integer, primary_key=True)
 	TIMESTAMP = db.Column(db.String(30), nullable=False)
+	INFO = db.Column(db.String(60), nullable=False)
 	UID = db.Column(db.Integer, db.ForeignKey(USER_DETAILS.UID, ondelete="CASCADE", onupdate="CASCADE"))
 
 	def __repr__(self):
